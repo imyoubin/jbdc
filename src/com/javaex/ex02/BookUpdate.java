@@ -25,12 +25,27 @@ public class BookUpdate {
 				 // 3. SQL문 준비 / 바인딩 / 실행
 				 // SQL문 준비
 					String query ="";
-					query += " update author ";
-					query += " set author_name = ?, ";
-					query += " author_desc = ? ";
-					query += " where author_id = ? ";
+					query += " update book ";
+					query += " set	book_title = ?, ";
+					query += " book_pubs = ?, ";
+					query += " book_pubDate = ?, ";
+					query += " book_authorId = ?, ";
+					query += " book_name = ?, ";
+					query += " book_desc = ? ";
+					query += " where book_id= ? ";
+					
+					//  바인딩
+					pstmt = conn.prepareStatement(query);
+					pstmt.setString(1, "강호동");
+					pstmt.setString(2, "강원도");
+					pstmt.setInt(3, 2);
+					
+					//실행
+					int count = pstmt.executeUpdate(); 
 					
 				 // 4.결과처리
+					System.out.println(count + "건이 수정 되었습니다.");
+					
 				} catch (ClassNotFoundException e) {
 				 System.out.println("error: 드라이버 로딩 실패 - " + e);
 				} catch (SQLException e) {

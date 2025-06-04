@@ -46,15 +46,15 @@ public class BookSelect {
 					rs = pstmt.executeQuery();
 				 // 4.결과처리
 					while(rs.next()) {
-						int book_id = rs.getInt("book_id");
-						String book_title = rs.getString("book_title");
-						String book_pubs = rs.getString("ook_pubs");
-						String book_pubDate = rs.getString("book_pubDate");
-						String book_authorId = rs.getString("book_authorId");
-						String book_name = rs.getString("book_name");
-						String book_desc = rs.getString("book_desc");
+						int bookid = rs.getInt("book_id");
+						String booktitle = rs.getString("book_title");
+						String bookpubs = rs.getString("ook_pubs");
+						String bookpubDate = rs.getString("book_pubDate");
+						String bookauthorId = rs.getString("book_authorId");
+						String bookname = rs.getString("book_name");
+						String bookdesc = rs.getString("book_desc");
 						
-						BookVO bookVO = new BookVO(book_id,book_title,book_pubs,book_pubDate,book_authorId,book_name,book_desc);
+						BookVO bookVO = new BookVO(bookid, booktitle, bookpubs, bookpubDate, bookauthorId, bookname, bookdesc);
 						
 					}
 					
@@ -79,7 +79,22 @@ public class BookSelect {
 				System.out.println("error:" + e);
 				 }
 				}
-
+				
+				System.out.println("-----------------------------------------");
+				for(int i=0; i<aList.size(); i++) {
+					
+					int bookid = aList.get(i).getBook_id();
+					String booktitle = aList.get(i).getBook_title();
+					String bookpubs = aList.get(i).getBook_pubs();
+					String bookpubDate = aList.get(i).getBook_pubDate();
+					String bookauthorId = aList.get(i).getBook_authorId();
+					String bookname = aList.get(i).getBook_name();
+					String bookdesc = aList.get(i).getBook_desc();
+					
+					System.out.println(bookid + ".  " +booktitle + "(" +bookpubs + ")");		
+				}
+				System.out.println("-----------------------------------------");
+				
 			}
 
 		}
