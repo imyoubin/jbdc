@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class BookInsert {
+public class BookUpdate {
 
 	public static void main(String[] args) {
 
@@ -24,22 +24,13 @@ public class BookInsert {
 
 				 // 3. SQL문 준비 / 바인딩 / 실행
 				 // SQL문 준비
-					String query = "";
-					query += " delete from book ";
-					query += " where book_id = ? ";
-					System.out.println(query);	
+					String query ="";
+					query += " update author ";
+					query += " set author_name = ?, ";
+					query += " author_desc = ? ";
+					query += " where author_id = ? ";
 					
-					// 바운딩
-					pstmt = conn.prepareStatement(query);
-					pstmt.setString(1, "정우성");
-					pstmt.setString(2, "서울");
-					
-					// 실행
-					int conet = pstmt.executeUpdate();
-										
-					// 4.결과처리
-					System.out.println( conet    +  "건이 등록 되었습니다.");
-					
+				 // 4.결과처리
 				} catch (ClassNotFoundException e) {
 				 System.out.println("error: 드라이버 로딩 실패 - " + e);
 				} catch (SQLException e) {
@@ -62,7 +53,5 @@ public class BookInsert {
 				 }
 				}
 
-			}
-
-		}
-
+	}
+}

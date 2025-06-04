@@ -5,12 +5,17 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class BookInsert {
+import com.javaex.ex01.AuthorVO;
+
+public class BookSelect {
 
 	public static void main(String[] args) {
-
-
+		
+		List<BookVO> aList = new ArrayList<BookVO>(); 
+		
 		// 0. import java.sql.*;
 				Connection conn = null;
 				PreparedStatement pstmt = null;
@@ -23,22 +28,35 @@ public class BookInsert {
 					conn = DriverManager.getConnection(url, "web", "web");
 
 				 // 3. SQL문 준비 / 바인딩 / 실행
-				 // SQL문 준비
+				 
+					// SQL문 준비 
 					String query = "";
-					query += " delete from book ";
-					query += " where book_id = ? ";
-					System.out.println(query);	
+					query+=" book_id, ";
+					query+=" book_title,";
+					query+=" book_pubs, ";
+					query+=" book_pubDate, ";
+					query+=" book_authorId, ";
+					query+=" book_name, ";
+					query+=" book_desc ";
 					
 					// 바운딩
 					pstmt = conn.prepareStatement(query);
-					pstmt.setString(1, "정우성");
-					pstmt.setString(2, "서울");
 					
 					// 실행
-					int conet = pstmt.executeUpdate();
-										
-					// 4.결과처리
-					System.out.println( conet    +  "건이 등록 되었습니다.");
+					rs = pstmt.executeQuery();
+				 // 4.결과처리
+					while(rs.next()) {
+						int book_id = rs.getInt("book_id");
+						String book_title = rs.getString("book_title");
+						String book_pubs = rs.getString("ook_pubs");
+						String book_pubDate = rs.getString("book_pubDate");
+						String book_authorId = rs.getString("book_authorId");
+						String book_name = rs.getString("book_name");
+						String book_desc = rs.getString("book_desc");
+						
+						BookVO bookVO = new BookVO(book_id,book_title,book_pubs,book_pubDate,book_authorId,book_name,book_desc);
+						
+					}
 					
 				} catch (ClassNotFoundException e) {
 				 System.out.println("error: 드라이버 로딩 실패 - " + e);
@@ -65,4 +83,3 @@ public class BookInsert {
 			}
 
 		}
-
