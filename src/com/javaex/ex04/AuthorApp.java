@@ -21,8 +21,11 @@ public class AuthorApp {
 		
 		AuthorVO authorVO =  authorDAO.authorSelectOne(11);
 		System.out.println(authorVO);
-		
-				
+					
+		for (AuthorVO vo : authorList) {
+		    System.out.printf("ID: %d, 이름: %s, 설명: %s%n",
+		        vo.getAuthorId(), vo.getAuthorName(), vo.getAuthorDesc());
+		}
 	}
 
 }
